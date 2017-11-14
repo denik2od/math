@@ -25,6 +25,11 @@ class Math
 			// Convert HTML entities to math characters
 			$formula = html_entity_decode($formula);
 
+			// Parse Global Variables
+			if( ee()->TMPL->fetch_param('parse_globals')=='yes' ) {
+				$formula = ee()->TMPL->parse_globals($formula);
+			}
+			
 			// Replace parameters
 			$params = ee()->TMPL->fetch_param('params');
 			$numericError = ee()->TMPL->fetch_param('numeric_error', 'Invalid input');
